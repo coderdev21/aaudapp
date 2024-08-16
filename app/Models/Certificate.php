@@ -27,6 +27,7 @@ class Certificate extends Model
 
   protected $fillable = [
     'customer_id',
+    'nic',
     'finca',
     'customer_name',
     'state',

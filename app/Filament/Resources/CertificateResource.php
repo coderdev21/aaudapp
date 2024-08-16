@@ -63,6 +63,7 @@ class CertificateResource extends Resource
               ->required()
               ->live()
               ->afterStateUpdated(function (Set $set, Get $get) {
+                $set('nic', Customer::find($get('customer_id'))->nic);
                 $set('finca', Customer::find($get('customer_id'))->finca);
                 $set('customer_name', Customer::find($get('customer_id'))->name);
                 $set('state', Customer::find($get('customer_id'))->state);
@@ -71,6 +72,8 @@ class CertificateResource extends Resource
                 $set('address', Customer::find($get('customer_id'))->address);
               })
               ->columns(2),
+            Forms\Components\Hidden::make('nic')
+              ->dehydrated(),
             Forms\Components\TextInput::make('finca')
               ->label('No. de Finca:')
               ->required()
@@ -105,11 +108,8 @@ class CertificateResource extends Resource
           ])->columns(3),
         Fieldset::make('Información de Comercialización')
           ->schema([
-            Forms\Components\TextInput::make('control_number')
-              ->label('No. de Control')
-              ->required()
-              ->hidden()
-              ->dehydrated(true),
+            Forms\Components\Hidden::make('control_number')
+              ->dehydrated(),
             Forms\Components\TextInput::make('created_by')
               ->label('Elaborado por:')
               ->default(function () {
@@ -142,7 +142,7 @@ class CertificateResource extends Resource
         Tables\Columns\TextColumn::make('control_number')
           ->label('Número')
           ->searchable(),
-        Tables\Columns\TextColumn::make('customer.nic')
+        Tables\Columns\TextColumn::make('nic')
           ->label('NIC')
           ->searchable(),
         /*         Tables\Columns\TextColumn::make('control_number')
@@ -168,13 +168,13 @@ class CertificateResource extends Resource
       ])
       ->actions([
         Tables\Actions\Action::make('download')
-          ->label('PDF')
+          ->label('Imprimir')
           ->icon('fas-file-invoice')
           ->url(
-            fn($record): string => route('pdf.example', ['id' => $record->id]),
+            fn($record): string => route('pdf.pazysalvo', ['id' => $record->id]),
             shouldOpenInNewTab: true
           ),
-        Tables\Actions\EditAction::make(),
+        //Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

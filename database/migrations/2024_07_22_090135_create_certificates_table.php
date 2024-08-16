@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nic');
             $table->string('finca');
             $table->string('customer_name');
             $table->string('state');

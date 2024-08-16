@@ -10,11 +10,11 @@ Route::get('/', function () {
 
 //Route::get('/pdf/generate/certificate/{record}', [PdfController::class, 'CertificateRecords'])->name('pdf.pazysalvo');
 
-Route::prefix('generate-pdf')->name('generate-pdf.')
+/* Route::prefix('generate-pdf')->name('generate-pdf.')
     ->group(function () {
         Route::controller(PdfController::class)->group(function () {
             Route::get('incident-report/{id}', 'incidentReport')->name('incident.report'); // Incident Reports
         });
-    });
+    }); */
 
-Route::get('/pdf/generate/certificate/{id}', [PdfController::class,'CertificateRecords'])->name('pdf.example');
+Route::get('/pdf/generate/certificate/{id}', [PdfController::class,'CertificateRecords'])->name('pdf.pazysalvo');
