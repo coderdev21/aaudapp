@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('agency');
             $table->string('created_by');
             $table->string('canceled_by')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->date('expiration_date');
             $table->timestamps();
         });
     }

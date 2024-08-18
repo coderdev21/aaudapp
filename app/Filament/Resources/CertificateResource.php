@@ -26,6 +26,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Filament\Infolists\Components;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\App;
 
@@ -106,10 +109,8 @@ class CertificateResource extends Resource
               ->dehydrated()
               ->columnSpanFull(),
           ])->columns(3),
-        Fieldset::make('Información de Comercialización')
+        Section::make('Información de Comercialización')
           ->schema([
-            Forms\Components\Hidden::make('control_number')
-              ->dehydrated(),
             Forms\Components\TextInput::make('created_by')
               ->label('Elaborado por:')
               ->default(function () {
@@ -125,7 +126,6 @@ class CertificateResource extends Resource
               ->dehydrated(),
             Forms\Components\Textarea::make('description')
               ->label('Observación')
-              ->required()
               ->columnSpanFull(),
           ])->columns(4),
       ]);
@@ -136,8 +136,20 @@ class CertificateResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('created_at')
-          ->label('Fecha')
+          ->label('Fecha de Emisión')
           ->dateTime('Y-m-d')
+          ->sortable(),
+        Tables\Columns\TextColumn::make('expiration_date')
+          ->label('Valido Hasta')
+          ->dateTime('Y-m-d')
+          ->badge()
+          ->color(function ($state) {
+            if (Carbon::parse($state)->gt(Carbon::now())) {
+              return 'success';
+            } else {
+              return 'danger';
+            }
+          })
           ->sortable(),
         Tables\Columns\TextColumn::make('control_number')
           ->label('Número')
@@ -174,6 +186,7 @@ class CertificateResource extends Resource
             fn($record): string => route('pdf.pazysalvo', ['id' => $record->id]),
             shouldOpenInNewTab: true
           ),
+        Tables\Actions\ViewAction::make(),
         //Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -182,6 +195,67 @@ class CertificateResource extends Resource
         ]),
       ]);
   }
+
+
+  public static function infolist(Infolist $infolist): Infolist
+  {
+    return $infolist
+      ->schema([
+        Components\Section::make('Verificación de Paz y Salvo')
+          ->description('Verifique los datos conincidan con la copia impresa.')
+          ->schema([
+            Components\TextEntry::make('control_number')
+              ->label('No. de Control'),
+            Components\TextEntry::make('created_at')
+              ->label('Fecha de Emisión')
+              ->formatStateUsing(function ($state) {
+                Carbon::setlocale(config('app.locale'));
+                return Carbon::parse($state)->translatedFormat('d \de\ F \de\ Y');
+              }),
+            Components\TextEntry::make('created_by')
+              ->label('Funcionario'),
+            Components\TextEntry::make('agency')
+              ->label('Agencia'),
+            Components\TextEntry::make('expiration_date')
+              ->label('Fecha de Expiración')
+              ->badge()
+              ->color(function ($state) {
+                if (Carbon::parse($state)->gt(Carbon::now())) {
+                  return 'success';
+                } else {
+                  return 'danger';
+                }
+              })
+              ->formatStateUsing(function ($state) {
+                Carbon::setlocale(config('app.locale'));
+                return Carbon::parse($state)->translatedFormat('d \de\ F \de\ Y');
+              }),
+          ])->columns(5),
+        Components\Section::make('Datos del Cliente')
+          ->description('Verifique los datos conincidan con la copia impresa.')
+          ->schema([
+            Components\TextEntry::make('nic')
+              ->label('Nic'),
+            Components\TextEntry::make('finca')
+              ->label('Finca')
+              ->columnSpan(2),
+            Components\TextEntry::make('town')
+              ->label('Corregimiento'),
+            Components\TextEntry::make('city')
+              ->label('Distrito'),
+            Components\TextEntry::make('state')
+              ->label('Provincia'),
+            Components\TextEntry::make('address')
+              ->label('Dirección')
+              ->columnSpanFull(),
+            Components\TextEntry::make('description')
+              ->label('Observación')
+              ->columnSpanFull(),
+          ])->columns(3),
+      ]);
+  }
+
+
 
   public static function getRelations(): array
   {
@@ -196,6 +270,7 @@ class CertificateResource extends Resource
       'index' => Pages\ListCertificates::route('/'),
       'create' => Pages\CreateCertificate::route('/create'),
       'edit' => Pages\EditCertificate::route('/{record}/edit'),
+      'view' => Pages\ViewCertificate::route('/{record}'),
     ];
   }
 }

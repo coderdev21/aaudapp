@@ -17,10 +17,16 @@ class Certificate extends Model
     parent::boot();
 
     static::creating(function ($model) {
+      
+      //Busca en la tabla 'certificates' el ultimo id y le suma uno mas
+      //para agregarlo al 'control_number'
       $lastRecordId = DB::table($model->getTable())->max('id');
       $nextId = $lastRecordId ? $lastRecordId + 1 : 1;
       $currentYear = Carbon::now()->year;
       $model->control_number = $nextId . '-' . $currentYear;
+
+      //Agrega la fecha de hoy y le suma 30 días
+      $model->expiration_date = Carbon::now()->addDays(30); 
     });
   }
 
@@ -39,6 +45,7 @@ class Certificate extends Model
     'created_by',
     'canceled_by',
     'description',
+    'expiration_date'
   ];
 
 
