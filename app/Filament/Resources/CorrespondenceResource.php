@@ -19,6 +19,9 @@ class CorrespondenceResource extends Resource
     protected static ?string $model = Correspondence::class;
     protected static ?string $label = 'Correspondencia';
     protected static ?string $navigationIcon = 'fas-envelope-open-text';
+    protected static ?string $navigationGroup = 'Dirección Administrativa';
+    protected static ?int $navigationSort = 1;
+  
 
     public static function form(Form $form): Form
     {

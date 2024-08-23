@@ -60,7 +60,7 @@ return new class extends Migration
             $table->string('card_type')->nullable();
 
             //Datos de usuario
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
