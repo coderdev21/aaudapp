@@ -112,19 +112,11 @@
                         <tr>
                             <td colspan="5" style="height: 150px; vertical-align: top;">
                                 <p class="contenido">La Autoridad de Aseo Urbano y Domiciliario de Panamá certifica que
-                                    el cliente
-                                    identificado
-                                    con número de <strong>NIC: {{ $item->nic }}</strong>, perteniciente a la finca
-                                    <strong>{{ $item->finca }}</strong>,
-                                    ubicada en
-                                    <strong>{{ $item->address }}</strong>, corregimiento de
-                                    <strong>{{ $item->town }}</strong>,
-                                    distrito
-                                    de
-                                    <strong>{{ $item->city }}</strong>,
-                                    provincia de <strong>{{ $item->state }}</strong>, se encuentra Paz y Salvo con
-                                    esta
-                                    institución por concepto de Tasa de Aseo.
+                                    el cliente identificado con número de <strong>NIC: {{ $item->nic }}</strong>,
+                                    perteniciente a la finca <strong>{{ $item->finca }}</strong>, a nombre de <strong>{{ $item->customer_name }}</strong>
+                                    ubicada en <strong>{{ $item->address }}</strong>, corregimiento de <strong>{{ $item->town }}</strong>,
+                                    distrito de <strong>{{ $item->city }}</strong>, provincia de <strong>{{ $item->state }}</strong>,
+                                    se encuentra Paz y Salvo con esta institución por concepto de Tasa de Aseo.
                                 </p>
                                 <p class="contenido">
                                     <strong>OBSERVACIÓN:</strong> {{ $item->description }}
@@ -225,19 +217,11 @@
                         <tr>
                             <td colspan="5" style="height: 150px; vertical-align: top;">
                                 <p class="contenido">La Autoridad de Aseo Urbano y Domiciliario de Panamá certifica que
-                                    el cliente
-                                    identificado
-                                    con número de <strong>NIC: {{ $item->nic }}</strong>, perteniciente a la finca
-                                    <strong>{{ $item->finca }}</strong>,
-                                    ubicada en
-                                    <strong>{{ $item->address }}</strong>, corregimiento de
-                                    <strong>{{ $item->town }}</strong>,
-                                    distrito
-                                    de
-                                    <strong>{{ $item->city }}</strong>,
-                                    provincia de <strong>{{ $item->state }}</strong>, se encuentra Paz y Salvo con
-                                    esta
-                                    institución por concepto de Tasa de Aseo.
+                                    el cliente identificado con número de <strong>NIC: {{ $item->nic }}</strong>, perteniciente
+                                    a la finca <strong>{{ $item->finca }}</strong>, a nombre de <strong>{{ $item->customer_name }}</strong>
+                                    ubicada en <strong>{{ $item->address }}</strong>, corregimiento de <strong>{{ $item->town }}</strong>,
+                                    distrito de <strong>{{ $item->city }}</strong>, provincia de <strong>{{ $item->state }}</strong>,
+                                    se encuentra Paz y Salvo con esta institución por concepto de Tasa de Aseo.
                                 </p>
                                 <p class="contenido">
                                     <strong>OBSERVACIÓN:</strong> {{ $item->description }}

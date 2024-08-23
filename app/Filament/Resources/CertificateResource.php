@@ -237,8 +237,9 @@ class CertificateResource extends Resource
             Components\TextEntry::make('nic')
               ->label('Nic'),
             Components\TextEntry::make('finca')
-              ->label('Finca')
-              ->columnSpan(2),
+              ->label('Finca'),
+              Components\TextEntry::make('customer_name')
+              ->label('Nombre'),
             Components\TextEntry::make('town')
               ->label('Corregimiento'),
             Components\TextEntry::make('city')
