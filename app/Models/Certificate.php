@@ -36,9 +36,9 @@ class Certificate extends Model
     'nic',
     'finca',
     'customer_name',
-    'state',
-    'city',
-    'town',
+    'state_id',
+    'city_id',
+    'town_id',
     'address',
     'control_number',
     'agency',
@@ -68,5 +68,20 @@ class Certificate extends Model
   {
     $query = DB::table('employees')->where('user_id', Auth::user()->user_id);
     return $query;
+  }
+
+  public function state(): BelongsTo
+  {
+    return $this->belongsTo(State::class);
+  }
+
+  public function city(): BelongsTo
+  {
+    return $this->belongsTo(City::class);
+  }
+
+  public function Town(): BelongsTo
+  {
+    return $this->belongsTo(Town::class);
   }
 }

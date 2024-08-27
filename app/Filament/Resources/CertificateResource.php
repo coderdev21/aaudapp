@@ -47,9 +47,10 @@ class CertificateResource extends Resource
 {
 
   protected static ?string $model = Certificate::class;
+  protected static ?string $navigationParentItem = 'Clientes';
+  protected static ?string $navigationGroup = 'Comercialización';
   protected static ?string $label = 'Paz y Salvo';
   protected static ?string $navigationIcon = 'fas-file-invoice';
-  protected static ?string $navigationGroup = 'Comercialización';
   protected static ?int $navigationSort = 2;
 
   public static function form(Form $form): Form
@@ -69,9 +70,9 @@ class CertificateResource extends Resource
                 $set('nic', Customer::find($get('customer_id'))->nic);
                 $set('finca', Customer::find($get('customer_id'))->finca);
                 $set('customer_name', Customer::find($get('customer_id'))->name);
-                $set('state', Customer::find($get('customer_id'))->state);
-                $set('city', Customer::find($get('customer_id'))->city);
-                $set('town', Customer::find($get('customer_id'))->town);
+                $set('state_id', Customer::find($get('customer_id'))->state_id);
+                $set('city_id', Customer::find($get('customer_id'))->city_id);
+                $set('town_id', Customer::find($get('customer_id'))->town_id);
                 $set('address', Customer::find($get('customer_id'))->address);
               })
               ->columns(2),
@@ -87,18 +88,21 @@ class CertificateResource extends Resource
               ->required()
               ->disabled()
               ->dehydrated(),
-            Forms\Components\TextInput::make('state')
+            Forms\Components\Select::make('state_id')
               ->label('Provincia:')
+              ->relationship('state', 'name')
               ->required()
               ->disabled()
               ->dehydrated(),
-            Forms\Components\TextInput::make('city')
+            Forms\Components\Select::make('city_id')
               ->label('Distrito:')
+              ->relationship('city', 'name')
               ->required()
               ->disabled()
               ->dehydrated(),
-            Forms\Components\TextInput::make('town')
+            Forms\Components\Select::make('town_id')
               ->label('Corregimiento:')
+              ->relationship('town', 'name')
               ->required()
               ->disabled()
               ->dehydrated(),
@@ -185,9 +189,11 @@ class CertificateResource extends Resource
           ->url(
             fn($record): string => route('pdf.pazysalvo', ['id' => $record->id]),
             shouldOpenInNewTab: true
-          ),
+          )
+          ->color('info'),
         Tables\Actions\ViewAction::make(),
-        //Tables\Actions\EditAction::make(),
+        Tables\Actions\EditAction::make(),
+        Tables\Actions\DeleteAction::make(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([
@@ -195,7 +201,6 @@ class CertificateResource extends Resource
         ]),
       ]);
   }
-
 
   public static function infolist(Infolist $infolist): Infolist
   {
@@ -239,11 +244,11 @@ class CertificateResource extends Resource
             Components\TextEntry::make('finca')
               ->label('Finca')
               ->columnSpan(2),
-            Components\TextEntry::make('town')
+            Components\TextEntry::make('town.name')
               ->label('Corregimiento'),
-            Components\TextEntry::make('city')
+            Components\TextEntry::make('city.name')
               ->label('Distrito'),
-            Components\TextEntry::make('state')
+            Components\TextEntry::make('state.name')
               ->label('Provincia'),
             Components\TextEntry::make('address')
               ->label('Dirección')
@@ -254,8 +259,6 @@ class CertificateResource extends Resource
           ])->columns(3),
       ]);
   }
-
-
 
   public static function getRelations(): array
   {

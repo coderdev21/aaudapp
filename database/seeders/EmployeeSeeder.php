@@ -33,7 +33,7 @@ class EmployeeSeeder extends Seeder
           'agency_id' => '7',
           'department_id' => '1',
           'numero_posicion' => '0',
-          //'user_id' => '2',
+          'image_url' => 'images/employees/SuperAdmin.jpg',
         ],
         [
           'employee_number' => '75039',
@@ -54,7 +54,7 @@ class EmployeeSeeder extends Seeder
           'agency_id' => '7',
           'department_id' => '1',
           'numero_posicion' => '60',
-          //'user_id' => '2',
+          'image_url' => 'images/employees/OrlandoSanjurPaz.png',
         ]
       ]);
     }

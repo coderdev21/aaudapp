@@ -23,8 +23,13 @@ class State extends Model
     return $this->hasMany(Employee::class);
   }
 
-  /*     public function customer(): HasMany
-    {
-        return $this->hasMany(Customer::class);
-    } */
+  public function customer(): HasMany
+  {
+    return $this->hasMany(Customer::class);
+  }
+
+  public function certificate(): HasMany
+  {
+    return $this->hasMany(Certificate::class);
+  }
 }

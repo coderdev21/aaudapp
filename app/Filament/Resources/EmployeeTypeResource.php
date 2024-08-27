@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PermissionResource\Pages;
-use App\Filament\Resources\PermissionResource\RelationManagers;
-use App\Models\Permission;
+use App\Filament\Resources\EmployeeTypeResource\Pages;
+use App\Filament\Resources\EmployeeTypeResource\RelationManagers;
+use App\Models\EmployeeType;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,25 +13,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PermissionResource extends Resource
+class EmployeeTypeResource extends Resource
 {
-  protected static ?string $model = Permission::class;
-  protected static ?string $navigationGroup = 'Seguridad';
-  protected static ?string $label = 'Permisos';
-  protected static ?int $navigationSort = 4;
-  protected static ?string $navigationIcon = 'fas-user-lock';
+  protected static ?string $model = EmployeeType::class;
+  protected static ?string $navigationParentItem = 'Funcionarios';
+  protected static ?string $navigationGroup = 'Configuración';
+  protected static ?string $label = 'Tipos de Funcionarios';
+
 
   public static function form(Form $form): Form
   {
     return $form
       ->schema([
         Forms\Components\TextInput::make('name')
-          ->label('Nombre del Permiso')
           ->required()
           ->maxLength(255),
-        Forms\Components\Hidden::make('guard_name')
-          ->default('web')
-          ->dehydrated(),
       ]);
   }
 
@@ -40,22 +36,23 @@ class PermissionResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('name')
-        ->label('Nombre del Permiso')
           ->searchable(),
-/*         Tables\Columns\TextColumn::make('created_at')
+        Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
           ->sortable()
           ->toggleable(isToggledHiddenByDefault: true),
         Tables\Columns\TextColumn::make('updated_at')
           ->dateTime()
           ->sortable()
-          ->toggleable(isToggledHiddenByDefault: true), */
+          ->toggleable(isToggledHiddenByDefault: true),
       ])
       ->filters([
         //
       ])
       ->actions([
+        Tables\Actions\ViewAction::make(),
         Tables\Actions\EditAction::make(),
+        Tables\Actions\DeleteAction::make(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([
@@ -74,9 +71,9 @@ class PermissionResource extends Resource
   public static function getPages(): array
   {
     return [
-      'index' => Pages\ListPermissions::route('/'),
-      'create' => Pages\CreatePermission::route('/create'),
-      'edit' => Pages\EditPermission::route('/{record}/edit'),
+      'index' => Pages\ListEmployeeTypes::route('/'),
+      'create' => Pages\CreateEmployeeType::route('/create'),
+      'edit' => Pages\EditEmployeeType::route('/{record}/edit'),
     ];
   }
 }

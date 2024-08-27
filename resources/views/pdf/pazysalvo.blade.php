@@ -13,12 +13,12 @@
             }
 
             @page {
-                margin: 0.5cm 0.5cm 0.5cm 0.5cm;
+                margin: 1.5cm 1.5cm 1.5cm 1.5cm;
             }
 
             body {
                 font-family: 'Poppins', sans-serif;
-                font-size: 12px;
+                font-size: 14px;
             }
 
             p.firma {
@@ -30,7 +30,7 @@
             p.footer {
                 text-align: justify;
                 line-height: 0.7;
-                font-size: 8px;
+                font-size: 10px;
 
             }
 
@@ -76,7 +76,7 @@
 
         <table class="principal">
             <tr>
-                <td style="padding: 2px;">
+                <td style="padding: 5px;">
                     <table>
                         <tr>
                             <td colspan="4" style="text-align: left; padding: 2px;">
@@ -118,11 +118,11 @@
                                     <strong>{{ $item->finca }}</strong>,
                                     ubicada en
                                     <strong>{{ $item->address }}</strong>, corregimiento de
-                                    <strong>{{ $item->town }}</strong>,
+                                    <strong>{{ $item->town->name }}</strong>,
                                     distrito
                                     de
-                                    <strong>{{ $item->city }}</strong>,
-                                    provincia de <strong>{{ $item->state }}</strong>, se encuentra Paz y Salvo con
+                                    <strong>{{ $item->city->name }}</strong>,
+                                    provincia de <strong>{{ $item->state->name }}</strong>, se encuentra Paz y Salvo con
                                     esta
                                     institución por concepto de Tasa de Aseo.
                                 </p>
@@ -185,7 +185,7 @@
                     </table>
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>---------------------------------------------------------------------------------------------------------------------</td>
             </tr>
             <tr>
@@ -298,7 +298,7 @@
                         </tr>
                     </table>
                 </td>
-            </tr>
+            </tr> --}}
         </table>
 
     </body>

@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\Page;
@@ -21,10 +22,9 @@ use Illuminate\Support\Facades\Hash;
 class UserResource extends Resource
 {
   protected static ?string $model = User::class;
+  protected static ?string $navigationGroup = 'Configuración';
   protected static ?string $label = 'Usuarios';
   protected static ?string $navigationIcon = 'fas-user-group';
-  protected static ?string $navigationGroup = 'Configuración';
-  protected static ?int $navigationSort = 4;
 
   public static function form(Form $form): Form
   {
@@ -48,12 +48,21 @@ class UserResource extends Resource
               ->maxLength(255),
             Forms\Components\TextInput::make('password')
               ->password()
+              ->hiddenOn(['edit', 'view'])
               ->dehydrateStateUsing(fn($state) => Hash::make($state))
               ->dehydrated(fn($state) => filled($state))
-              //->required(fn(string $context): bool => $context === 'create')
-              ->required(fn (Page $livewire) => ($livewire instanceof CreateRecord))
+              ->required(fn(Page $livewire) => ($livewire instanceof CreateRecord))
               ->maxLength(12),
-            Select::make('roles')->multiple()->relationship('roles', 'name'),
+
+          ])->columns(3),
+        Section::make('Roles del Usuario')
+          ->description('Ingrese los roles que tendrá el usuario en el sistema.')
+          ->schema([
+            Select::make('roles')
+              ->relationship('roles', 'name')
+              ->multiple()
+              ->searchable()
+              ->preload(),
           ])
       ]);
   }
@@ -63,8 +72,13 @@ class UserResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('name')
+          ->label('Nombre de Usuario')
           ->searchable(),
         Tables\Columns\TextColumn::make('email')
+          ->label('Correo Eléctronico')
+          ->searchable(),
+        Tables\Columns\TextColumn::make('employee.fullname')
+          ->label('Funcionario')
           ->searchable(),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
@@ -79,7 +93,9 @@ class UserResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\ViewAction::make(),
         Tables\Actions\EditAction::make(),
+        Tables\Actions\DeleteAction::make(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([
