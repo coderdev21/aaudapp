@@ -45,6 +45,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '51fcf4e06c07cc00c920b44bcd900e7a' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/apc.php',
         '288267919fedd3829a7732b5fb202197' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/array.php',
         'a88cd08cfbf1600f7d5de6e587eee1fa' => __DIR__ . '/..' . '/thecodingmachine/safe/deprecated/datetime.php',
@@ -144,6 +145,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             'voku\\' => 5,
         ),
+        'Y' => 
+        array (
+            'Yebor974\\Filament\\RenewPassword\\' => 32,
+        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -192,12 +197,15 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
             'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\Invade\\' => 14,
             'Spatie\\Color\\' => 13,
+            'Spatie\\Activitylog\\' => 19,
             'Sabberworm\\CSS\\' => 15,
         ),
         'R' => 
         array (
             'RyanChandler\\BladeCaptureDirective\\Database\\Factories\\' => 54,
             'RyanChandler\\BladeCaptureDirective\\' => 35,
+            'Rmsramos\\Activitylog\\Database\\Factories\\' => 40,
+            'Rmsramos\\Activitylog\\' => 21,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
@@ -326,6 +334,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'Yebor974\\Filament\\RenewPassword\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yebor974/filament-renew-password/src',
         ),
         'Whoops\\' => 
         array (
@@ -487,6 +499,10 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         array (
             0 => __DIR__ . '/..' . '/spatie/color/src',
         ),
+        'Spatie\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-activitylog/src',
+        ),
         'Sabberworm\\CSS\\' => 
         array (
             0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
@@ -498,6 +514,14 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'RyanChandler\\BladeCaptureDirective\\' => 
         array (
             0 => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src',
+        ),
+        'Rmsramos\\Activitylog\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/database/factories',
+        ),
+        'Rmsramos\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -852,6 +876,9 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'AnourValar\\EloquentSerialize\\Package' => __DIR__ . '/..' . '/anourvalar/eloquent-serialize/src/Package.php',
         'AnourValar\\EloquentSerialize\\Service' => __DIR__ . '/..' . '/anourvalar/eloquent-serialize/src/Service.php',
         'App\\Casts\\MoneyCast' => __DIR__ . '/../..' . '/app/Casts/MoneyCast.php',
+        'App\\Console\\Commands\\TestEmails' => __DIR__ . '/../..' . '/app/Console/Commands/TestEmails.php',
+        'App\\Filament\\Auth\\CustomLogin' => __DIR__ . '/../..' . '/app/Filament/Auth/CustomLogin.php',
+        'App\\Filament\\Pages\\Auth\\EditProfile' => __DIR__ . '/../..' . '/app/Filament/Pages/Auth/EditProfile.php',
         'App\\Filament\\Resources\\CertificateResource' => __DIR__ . '/../..' . '/app/Filament/Resources/CertificateResource.php',
         'App\\Filament\\Resources\\CertificateResource\\Pages\\CreateCertificate' => __DIR__ . '/../..' . '/app/Filament/Resources/CertificateResource/Pages/CreateCertificate.php',
         'App\\Filament\\Resources\\CertificateResource\\Pages\\EditCertificate' => __DIR__ . '/../..' . '/app/Filament/Resources/CertificateResource/Pages/EditCertificate.php',
@@ -877,14 +904,9 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Filament\\Resources\\EmployeeTypeResource\\Pages\\CreateEmployeeType' => __DIR__ . '/../..' . '/app/Filament/Resources/EmployeeTypeResource/Pages/CreateEmployeeType.php',
         'App\\Filament\\Resources\\EmployeeTypeResource\\Pages\\EditEmployeeType' => __DIR__ . '/../..' . '/app/Filament/Resources/EmployeeTypeResource/Pages/EditEmployeeType.php',
         'App\\Filament\\Resources\\EmployeeTypeResource\\Pages\\ListEmployeeTypes' => __DIR__ . '/../..' . '/app/Filament/Resources/EmployeeTypeResource/Pages/ListEmployeeTypes.php',
-        'App\\Filament\\Resources\\PermissionResource' => __DIR__ . '/../..' . '/app/Filament/Resources/PermissionResource.php',
-        'App\\Filament\\Resources\\PermissionResource\\Pages\\CreatePermission' => __DIR__ . '/../..' . '/app/Filament/Resources/PermissionResource/Pages/CreatePermission.php',
-        'App\\Filament\\Resources\\PermissionResource\\Pages\\EditPermission' => __DIR__ . '/../..' . '/app/Filament/Resources/PermissionResource/Pages/EditPermission.php',
-        'App\\Filament\\Resources\\PermissionResource\\Pages\\ListPermissions' => __DIR__ . '/../..' . '/app/Filament/Resources/PermissionResource/Pages/ListPermissions.php',
-        'App\\Filament\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Filament/Resources/RoleResource.php',
-        'App\\Filament\\Resources\\RoleResource\\Pages\\CreateRole' => __DIR__ . '/../..' . '/app/Filament/Resources/RoleResource/Pages/CreateRole.php',
-        'App\\Filament\\Resources\\RoleResource\\Pages\\EditRole' => __DIR__ . '/../..' . '/app/Filament/Resources/RoleResource/Pages/EditRole.php',
-        'App\\Filament\\Resources\\RoleResource\\Pages\\ListRoles' => __DIR__ . '/../..' . '/app/Filament/Resources/RoleResource/Pages/ListRoles.php',
+        'App\\Filament\\Resources\\LogResource' => __DIR__ . '/../..' . '/app/Filament/Resources/LogResource.php',
+        'App\\Filament\\Resources\\LogResource\\Pages\\ListLogs' => __DIR__ . '/../..' . '/app/Filament/Resources/LogResource/Pages/ListLogs.php',
+        'App\\Filament\\Resources\\LogResource\\Pages\\ViewLog' => __DIR__ . '/../..' . '/app/Filament/Resources/LogResource/Pages/ViewLog.php',
         'App\\Filament\\Resources\\StateResource' => __DIR__ . '/../..' . '/app/Filament/Resources/StateResource.php',
         'App\\Filament\\Resources\\StateResource\\Pages\\CreateState' => __DIR__ . '/../..' . '/app/Filament/Resources/StateResource/Pages/CreateState.php',
         'App\\Filament\\Resources\\StateResource\\Pages\\EditState' => __DIR__ . '/../..' . '/app/Filament/Resources/StateResource/Pages/EditState.php',
@@ -899,6 +921,8 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Filament\\Resources\\UserResource\\Pages\\ListUsers' => __DIR__ . '/../..' . '/app/Filament/Resources/UserResource/Pages/ListUsers.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\PdfController' => __DIR__ . '/../..' . '/app/Http/Controllers/PdfController.php',
+        'App\\Mail\\ForceRenewPassword' => __DIR__ . '/../..' . '/app/Mail/ForceRenewPassword.php',
+        'App\\Mail\\UserCreate' => __DIR__ . '/../..' . '/app/Mail/UserCreate.php',
         'App\\Models\\Agency' => __DIR__ . '/../..' . '/app/Models/Agency.php',
         'App\\Models\\Bank' => __DIR__ . '/../..' . '/app/Models/Bank.php',
         'App\\Models\\Certificate' => __DIR__ . '/../..' . '/app/Models/Certificate.php',
@@ -910,19 +934,21 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Models\\Department' => __DIR__ . '/../..' . '/app/Models/Department.php',
         'App\\Models\\Employee' => __DIR__ . '/../..' . '/app/Models/Employee.php',
         'App\\Models\\EmployeeType' => __DIR__ . '/../..' . '/app/Models/EmployeeType.php',
-        'App\\Models\\Permission' => __DIR__ . '/../..' . '/app/Models/Permission.php',
         'App\\Models\\Position' => __DIR__ . '/../..' . '/app/Models/Position.php',
-        'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\State' => __DIR__ . '/../..' . '/app/Models/State.php',
         'App\\Models\\Team' => __DIR__ . '/../..' . '/app/Models/Team.php',
         'App\\Models\\Town' => __DIR__ . '/../..' . '/app/Models/Town.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Policies\\ActivityPolicy' => __DIR__ . '/../..' . '/app/Policies/ActivityPolicy.php',
         'App\\Policies\\CertificatePolicy' => __DIR__ . '/../..' . '/app/Policies/CertificatePolicy.php',
+        'App\\Policies\\CityPolicy' => __DIR__ . '/../..' . '/app/Policies/CityPolicy.php',
         'App\\Policies\\CorrespondencePolicy' => __DIR__ . '/../..' . '/app/Policies/CorrespondencePolicy.php',
         'App\\Policies\\CustomerPolicy' => __DIR__ . '/../..' . '/app/Policies/CustomerPolicy.php',
         'App\\Policies\\EmployeePolicy' => __DIR__ . '/../..' . '/app/Policies/EmployeePolicy.php',
-        'App\\Policies\\PermissionPolicy' => __DIR__ . '/../..' . '/app/Policies/PermissionPolicy.php',
+        'App\\Policies\\EmployeeTypePolicy' => __DIR__ . '/../..' . '/app/Policies/EmployeeTypePolicy.php',
         'App\\Policies\\RolePolicy' => __DIR__ . '/../..' . '/app/Policies/RolePolicy.php',
+        'App\\Policies\\StatePolicy' => __DIR__ . '/../..' . '/app/Policies/StatePolicy.php',
+        'App\\Policies\\TownPolicy' => __DIR__ . '/../..' . '/app/Policies/TownPolicy.php',
         'App\\Policies\\UserPolicy' => __DIR__ . '/../..' . '/app/Policies/UserPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\Filament\\DashboardPanelProvider' => __DIR__ . '/../..' . '/app/Providers/Filament/DashboardPanelProvider.php',
@@ -7566,6 +7592,20 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Rmsramos\\Activitylog\\Actions\\ActivityLogTimelineSimpleAction' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/ActivityLogTimelineSimpleAction.php',
+        'Rmsramos\\Activitylog\\Actions\\ActivityLogTimelineTableAction' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/ActivityLogTimelineTableAction.php',
+        'Rmsramos\\Activitylog\\Actions\\Concerns\\ActionContent' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/Concerns/ActionContent.php',
+        'Rmsramos\\Activitylog\\ActivitylogPlugin' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogPlugin.php',
+        'Rmsramos\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogServiceProvider.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineIconEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineIconEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLinePropertiesEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLinePropertiesEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineRepeatableEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineRepeatableEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineTitleEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineTitleEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Concerns\\HasModifyState' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Concerns/HasModifyState.php',
+        'Rmsramos\\Activitylog\\RelationManagers\\ActivitylogRelationManager' => __DIR__ . '/..' . '/rmsramos/activitylog/src/RelationManagers/ActivitylogRelationManager.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ListActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ListActivitylog.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ViewActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ViewActivitylog.php',
         'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirective' => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src/BladeCaptureDirective.php',
         'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider' => __DIR__ . '/..' . '/ryangjchandler/blade-capture-directive/src/BladeCaptureDirectiveServiceProvider.php',
         'SQLite3Exception' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
@@ -7899,6 +7939,24 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Activitylog\\ActivityLogStatus' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogStatus.php',
+        'Spatie\\Activitylog\\ActivityLogger' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivityLogger.php',
+        'Spatie\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/ActivitylogServiceProvider.php',
+        'Spatie\\Activitylog\\CauserResolver' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/CauserResolver.php',
+        'Spatie\\Activitylog\\CleanActivitylogCommand' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/CleanActivitylogCommand.php',
+        'Spatie\\Activitylog\\Contracts\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Contracts/Activity.php',
+        'Spatie\\Activitylog\\Contracts\\LoggablePipe' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Contracts/LoggablePipe.php',
+        'Spatie\\Activitylog\\EventLogBag' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/EventLogBag.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogActivity.php',
+        'Spatie\\Activitylog\\Exceptions\\CouldNotLogChanges' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/CouldNotLogChanges.php',
+        'Spatie\\Activitylog\\Exceptions\\InvalidConfiguration' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Exceptions/InvalidConfiguration.php',
+        'Spatie\\Activitylog\\Facades\\CauserResolver' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Facades/CauserResolver.php',
+        'Spatie\\Activitylog\\Facades\\LogBatch' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Facades/LogBatch.php',
+        'Spatie\\Activitylog\\LogBatch' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/LogBatch.php',
+        'Spatie\\Activitylog\\LogOptions' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/LogOptions.php',
+        'Spatie\\Activitylog\\Models\\Activity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Models/Activity.php',
+        'Spatie\\Activitylog\\Traits\\CausesActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/CausesActivity.php',
+        'Spatie\\Activitylog\\Traits\\LogsActivity' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/Traits/LogsActivity.php',
         'Spatie\\Color\\CIELab' => __DIR__ . '/..' . '/spatie/color/src/CIELab.php',
         'Spatie\\Color\\Cmyk' => __DIR__ . '/..' . '/spatie/color/src/Cmyk.php',
         'Spatie\\Color\\Color' => __DIR__ . '/..' . '/spatie/color/src/Color.php',
@@ -9038,6 +9096,12 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'Yebor974\\Filament\\RenewPassword\\Contracts\\RenewPasswordContract' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/Contracts/RenewPasswordContract.php',
+        'Yebor974\\Filament\\RenewPassword\\FilamentRenewPasswordServiceProvider' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/FilamentRenewPasswordServiceProvider.php',
+        'Yebor974\\Filament\\RenewPassword\\Middleware\\RenewPasswordMiddleware' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/Middleware/RenewPasswordMiddleware.php',
+        'Yebor974\\Filament\\RenewPassword\\Pages\\Auth\\RenewPassword' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/Pages/Auth/RenewPassword.php',
+        'Yebor974\\Filament\\RenewPassword\\RenewPasswordPlugin' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/RenewPasswordPlugin.php',
+        'Yebor974\\Filament\\RenewPassword\\Traits\\RenewPassword' => __DIR__ . '/..' . '/yebor974/filament-renew-password/src/Traits/RenewPassword.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

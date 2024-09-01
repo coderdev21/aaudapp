@@ -13,7 +13,10 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "owenvoke/blade-fontawesome": "^2.6",
-        "pelmered/filament-money-field": "^1.3"
+        "pelmered/filament-money-field": "^1.3",
+        "rmsramos/activitylog": "^1.0",
+        "spatie/laravel-activitylog": "^4.8",
+        "yebor974/filament-renew-password": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

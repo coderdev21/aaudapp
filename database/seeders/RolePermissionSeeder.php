@@ -19,15 +19,26 @@ class RolePermissionSeeder extends Seeder
     app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
     // create permissions
-    Permission::create(['name' => 'Usuarios - Crear']);
-    Permission::create(['name' => 'Usuarios - Ver']);
-    Permission::create(['name' => 'Usuarios - Editar']);
-    Permission::create(['name' => 'Usuarios - Eliminar']);
+    Permission::create(['name' => 'view_any_role']);
+    Permission::create(['name' => 'view_role']);
+    Permission::create(['name' => 'create_role']); 
+    Permission::create(['name' => 'update_role']);
+    Permission::create(['name' => 'delete_role']);
+    Permission::create(['name' => 'delete_any_role']);
+    Permission::create(['name' => 'view_any_user']);
+    Permission::create(['name' => 'view_user']);
+    Permission::create(['name' => 'create_user']);
+    Permission::create(['name' => 'update_user']);
+    Permission::create(['name' => 'delete_user']);
+    Permission::create(['name' => 'delete_any_user']);
+    Permission::create(['name' => 'force_delete_user']);
+    Permission::create(['name' => 'force_delete_any_user']);
+    Permission::create(['name' => 'restore_user']);
+    Permission::create(['name' => 'restore_any_user']);
+    Permission::create(['name' => 'replicate_user']);
+    Permission::create(['name' => 'reorder_user']);
 
-    Permission::create(['name' => 'Paz y Salvo - Crear']);
-    Permission::create(['name' => 'Paz y Salvo - Ver']);
-    Permission::create(['name' => 'Paz y Salvo - Editar']); 
-    Permission::create(['name' => 'Paz y Salvo - Eliminar']);
+
 
     // create roles and assign created permissions
 
@@ -49,7 +60,26 @@ class RolePermissionSeeder extends Seeder
 
     // Creo el rol Administrador
     Role::create(['name' => 'Administrador'])
-      ->givePermissionTo(['Usuarios - Crear', 'Usuarios - Editar', 'Usuarios - Eliminar']); //Le asigno los permisos de Configuración
+      ->givePermissionTo([
+        'view_any_role', 
+        'view_role', 
+        'create_role', 
+        'update_role', 
+        'delete_role', 
+        'delete_any_role',
+        'view_any_user',
+        'view_user',
+        'create_user',
+        'update_user',
+        'delete_user',
+        'delete_any_user',
+        'force_delete_user',
+        'force_delete_any_user',
+        'restore_user',
+        'restore_any_user',
+        'replicate_user',
+        'reorder_user',
+      ]); //Le asigno los permisos de Configuración
 
     // Asigno el rol Administrador al usuario osanjur@aaud.gob.pa
     $admin = User::where('id', '2')->first();

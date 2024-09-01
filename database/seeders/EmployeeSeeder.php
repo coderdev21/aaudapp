@@ -16,7 +16,7 @@ class EmployeeSeeder extends Seeder
       DB::table('employees')->insert([
         [
           'employee_number' => '0',
-          'nombre' => 'Admin',
+          'nombre' => 'Super',
           'segundo_nombre' => '',
           'apellido_paterno' => 'Admin',
           'apellido_materno' => '',

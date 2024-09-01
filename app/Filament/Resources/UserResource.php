@@ -9,7 +9,10 @@ use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
@@ -18,6 +21,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Expr\Cast\Bool_;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 
 class UserResource extends Resource
 {
@@ -34,26 +39,19 @@ class UserResource extends Resource
           ->description('Ingrese los datos del usuario.')
           ->schema([
             Forms\Components\TextInput::make('name')
-              ->label('Nombre de Usuario')
+              //->email()
               ->required()
+              ->suffix('@aaud.gob.pa')
+              ->afterStateUpdated(fn(Set $set, ?string $state) => $set('email', $state.'@aaud.gob.pa'))
               ->maxLength(255),
             Forms\Components\Select::make('employee_id')
               ->label('Nombre del funcionario')
               ->relationship('employee', 'fullname')
               ->searchable()
               ->required(),
-            Forms\Components\TextInput::make('email')
-              ->email()
+            Forms\Components\Hidden::make('email')
               ->required()
-              ->maxLength(255),
-            Forms\Components\TextInput::make('password')
-              ->password()
-              ->hiddenOn(['edit', 'view'])
-              ->dehydrateStateUsing(fn($state) => Hash::make($state))
-              ->dehydrated(fn($state) => filled($state))
-              ->required(fn(Page $livewire) => ($livewire instanceof CreateRecord))
-              ->maxLength(12),
-
+              ->dehydrated(),
           ])->columns(3),
         Section::make('Roles del Usuario')
           ->description('Ingrese los roles que tendrá el usuario en el sistema.')
@@ -63,6 +61,12 @@ class UserResource extends Resource
               ->multiple()
               ->searchable()
               ->preload(),
+          ]),
+        Section::make('Cambiar contraseña')
+          ->description('El usuario deberá cambiar la contraseña en el prómximo inicio de sesión.')
+          ->schema([
+            Toggle::make('force_renew_password')
+              ->label('Reestablecer contraseña')
           ])
       ]);
   }
@@ -70,6 +74,7 @@ class UserResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
+      ->modifyQueryUsing(fn(Builder $query) => $query->whereNot('id', 1))
       ->columns([
         Tables\Columns\TextColumn::make('name')
           ->label('Nombre de Usuario')
@@ -80,6 +85,9 @@ class UserResource extends Resource
         Tables\Columns\TextColumn::make('employee.fullname')
           ->label('Funcionario')
           ->searchable(),
+        Tables\Columns\IconColumn::make('force_renew_password')
+          ->label('Cambio de Contraseña')
+          ->boolean(),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
           ->sortable()

@@ -31,6 +31,8 @@ use Filament\Infolists\Components;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\App;
+use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
+use Rmsramos\Activitylog\RelationManagers\ActivitylogRelationManager;
 
 class CreateCertificateRecord extends CreateRecord
 {
@@ -193,6 +195,7 @@ class CertificateResource extends Resource
           ->color('info'),
         Tables\Actions\ViewAction::make(),
         Tables\Actions\EditAction::make(),
+        ActivityLogTimelineTableAction::make('Activities'),
         Tables\Actions\DeleteAction::make(),
       ])
       ->bulkActions([

@@ -2,9 +2,9 @@
 
 namespace App\Providers\Filament;
 
-use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Auth\CustomLogin;
 use App\Filament\Pages\Auth\EditProfile;
+use App\Filament\Resources\LogResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -23,7 +23,9 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Support\Facades\Auth;
+use Rmsramos\Activitylog\ActivitylogPlugin;
 use Sabberworm\CSS\Settings;
+use Yebor974\Filament\RenewPassword\RenewPasswordPlugin;
 
 class DashboardPanelProvider extends PanelProvider
 {
@@ -32,6 +34,7 @@ class DashboardPanelProvider extends PanelProvider
     return $panel
       ->default()
       ->id('dashboard')
+      ->databaseNotifications()
       ->path('dashboard')
       ->favicon(asset('images/logoaaud.png'))
       ->login(CustomLogin::class)
@@ -72,20 +75,21 @@ class DashboardPanelProvider extends PanelProvider
         Authenticate::class,
       ])
       ->plugins([
-        \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+        \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+        (new RenewPasswordPlugin())
+          ->forceRenewPassword(),
+        ActivitylogPlugin::make()
+          ->resource(LogResource::class)
+          ->label('Log de Auditoria')
+          ->pluralLabel('Logs de Auditoria')
+          ->navigationGroup('Auditoria del Sistema')
+          ->navigationIcon('fas-magnifying-glass-chart'),
       ])
       ->userMenuItems([
         MenuItem::make()
           ->label('Cambiar Contraseña')
           ->url('#')
           ->icon('fas-key'),
-        // ...
       ]);
-/*       ->renderHook(
-        // PanelsRenderHook::BODY_END,
-        PanelsRenderHook::FOOTER,
-        fn() => view('footer')
-      ); */
-    //->plugin(FilamentSpatieRolesPermissionsPlugin::make());
   }
 }

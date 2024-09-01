@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+
 
 class Certificate extends Model
 {
+
+  use LogsActivity;
 
   protected static function boot()
   {
@@ -45,9 +51,14 @@ class Certificate extends Model
     'created_by',
     'canceled_by',
     'description',
-    'expiration_date'
+    'expiration_date',
   ];
 
+  public function getActivitylogOptions(): LogOptions
+  {
+      return LogOptions::defaults()
+      ->logOnly(['description']);
+  }
 
   public function employee(): BelongsTo
   {
