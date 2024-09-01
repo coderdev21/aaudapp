@@ -42,11 +42,15 @@ class UserResource extends Resource
               //->email()
               ->required()
               ->suffix('@aaud.gob.pa')
-              ->afterStateUpdated(fn(Set $set, ?string $state) => $set('email', $state.'@aaud.gob.pa'))
+              ->afterStateUpdated(fn(Set $set, ?string $state) => $set('email', $state . '@aaud.gob.pa'))
               ->maxLength(255),
             Forms\Components\Select::make('employee_id')
               ->label('Nombre del funcionario')
-              ->relationship('employee', 'fullname')
+              ->relationship(
+                name: 'employee',
+                titleAttribute: 'fullname',
+                modifyQueryUsing: fn(Builder $query) => $query->doesntHave('user'),
+              )
               ->searchable()
               ->required(),
             Forms\Components\Hidden::make('email')

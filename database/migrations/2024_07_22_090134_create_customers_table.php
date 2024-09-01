@@ -18,9 +18,6 @@ return new class extends Migration
             //$table->string('identificacion');
             $table->string('name');
             $table->string('actividad');
-/*             $table->string('state');
-            $table->string('city');
-            $table->string('town'); */
             $table->foreignId('state_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('city_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('town_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
