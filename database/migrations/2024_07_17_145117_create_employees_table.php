@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('estado_civil')->default(false);
             $table->date('fecha_nacimiento')->default('1900-01-01');
             //$table->string('tipo_sangre')->default('O+');
+            $table->string('image_url')->nullable();
 
             //Datos de Dirección
             $table->foreignId('state_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
@@ -60,7 +61,7 @@ return new class extends Migration
             $table->string('card_type')->nullable();
 
             //Datos de usuario
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            //$table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

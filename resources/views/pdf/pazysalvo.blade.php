@@ -13,12 +13,12 @@
             }
 
             @page {
-                margin: 0.5cm 0.5cm 0.5cm 0.5cm;
+                margin: 1.5cm 1.5cm 1.5cm 1.5cm;
             }
 
             body {
                 font-family: 'Poppins', sans-serif;
-                font-size: 12px;
+                font-size: 14px;
             }
 
             p.firma {
@@ -30,7 +30,7 @@
             p.footer {
                 text-align: justify;
                 line-height: 0.7;
-                font-size: 8px;
+                font-size: 10px;
 
             }
 
@@ -76,7 +76,7 @@
 
         <table class="principal">
             <tr>
-                <td style="padding: 2px;">
+                <td style="padding: 5px;">
                     <table>
                         <tr>
                             <td colspan="4" style="text-align: left; padding: 2px;">
@@ -112,11 +112,27 @@
                         <tr>
                             <td colspan="5" style="height: 150px; vertical-align: top;">
                                 <p class="contenido">La Autoridad de Aseo Urbano y Domiciliario de Panamá certifica que
+<<<<<<< HEAD
                                     el cliente identificado con número de <strong>NIC: {{ $item->nic }}</strong>,
                                     perteniciente a la finca <strong>{{ $item->finca }}</strong>, a nombre de <strong>{{ $item->customer_name }}</strong>
                                     ubicada en <strong>{{ $item->address }}</strong>, corregimiento de <strong>{{ $item->town }}</strong>,
                                     distrito de <strong>{{ $item->city }}</strong>, provincia de <strong>{{ $item->state }}</strong>,
                                     se encuentra Paz y Salvo con esta institución por concepto de Tasa de Aseo.
+=======
+                                    el cliente
+                                    identificado
+                                    con número de <strong>NIC: {{ $item->nic }}</strong>, perteniciente a la finca
+                                    <strong>{{ $item->finca }}</strong>,
+                                    ubicada en
+                                    <strong>{{ $item->address }}</strong>, corregimiento de
+                                    <strong>{{ $item->town->name }}</strong>,
+                                    distrito
+                                    de
+                                    <strong>{{ $item->city->name }}</strong>,
+                                    provincia de <strong>{{ $item->state->name }}</strong>, se encuentra Paz y Salvo con
+                                    esta
+                                    institución por concepto de Tasa de Aseo.
+>>>>>>> 46e390164bcbff5f4368f1054cbf97e5ade77c5b
                                 </p>
                                 <p class="contenido">
                                     <strong>OBSERVACIÓN:</strong> {{ $item->description }}
@@ -177,7 +193,7 @@
                     </table>
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>---------------------------------------------------------------------------------------------------------------------</td>
             </tr>
             <tr>
@@ -282,7 +298,7 @@
                         </tr>
                     </table>
                 </td>
-            </tr>
+            </tr> --}}
         </table>
 
     </body>

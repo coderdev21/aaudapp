@@ -16,7 +16,7 @@ class AgencySeeder extends Seeder
         DB::table('agencies')->insert([
             ['name' => 'El Dorado'],
             ['name' => 'La Doña'],
-            ['name' => 'Via Brasil'],
+            ['name' => 'Vía Brasil'],
             ['name' => 'San Miguelito'],
             ['name' => 'Alcalde Díaz'],
             ['name' => 'Los Pueblos'],

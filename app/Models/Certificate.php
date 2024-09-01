@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+
 
 class Certificate extends Model
 {
+
+  use LogsActivity;
 
   protected static function boot()
   {
@@ -36,18 +42,23 @@ class Certificate extends Model
     'nic',
     'finca',
     'customer_name',
-    'state',
-    'city',
-    'town',
+    'state_id',
+    'city_id',
+    'town_id',
     'address',
     'control_number',
     'agency',
     'created_by',
     'canceled_by',
     'description',
-    'expiration_date'
+    'expiration_date',
   ];
 
+  public function getActivitylogOptions(): LogOptions
+  {
+      return LogOptions::defaults()
+      ->logOnly(['description']);
+  }
 
   public function employee(): BelongsTo
   {
@@ -68,5 +79,20 @@ class Certificate extends Model
   {
     $query = DB::table('employees')->where('user_id', Auth::user()->user_id);
     return $query;
+  }
+
+  public function state(): BelongsTo
+  {
+    return $this->belongsTo(State::class);
+  }
+
+  public function city(): BelongsTo
+  {
+    return $this->belongsTo(City::class);
+  }
+
+  public function Town(): BelongsTo
+  {
+    return $this->belongsTo(Town::class);
   }
 }
