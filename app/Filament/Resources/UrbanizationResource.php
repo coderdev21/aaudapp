@@ -6,6 +6,7 @@ use App\Filament\Resources\UrbanizationResource\Pages;
 use App\Filament\Resources\UrbanizationResource\RelationManagers;
 use App\Models\Urbanization;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -18,7 +19,9 @@ class UrbanizationResource extends Resource
 {
   protected static ?string $model = Urbanization::class;
   protected static ?string $navigationGroup = 'Comercialización';
-  protected static ?string $label = 'Proyectos';
+  protected static ?string $pluralModelLabel = 'Proyectos';
+  protected static ?string $navigationLabel = 'Proyectos';
+  protected static ?string $modelLabel = 'Proyecto';
   protected static ?string $navigationIcon = 'fas-city';
   protected static ?int $navigationSort = 4;
 
@@ -26,18 +29,26 @@ class UrbanizationResource extends Resource
   {
     return $form
       ->schema([
-        Forms\Components\Select::make('state_id')
-          ->relationship('state', 'name')
-          ->required(),
-        Forms\Components\Select::make('city_id')
-          ->relationship('city', 'name')
-          ->required(),
-        Forms\Components\Select::make('town_id')
-          ->relationship('town', 'name')
-          ->required(),
-        Forms\Components\TextInput::make('name')
-          ->required()
-          ->maxLength(255),
+        Section::make('Datos del Pryecto')
+          ->description('Ingrese los datos del proyecto')
+          ->schema([
+            Forms\Components\Select::make('state_id')
+              ->label('Provincia')
+              ->relationship('state', 'name')
+              ->required(),
+            Forms\Components\Select::make('city_id')
+              ->label('Distrito')
+              ->relationship('city', 'name')
+              ->required(),
+            Forms\Components\Select::make('town_id')
+              ->label('Corregimiento')
+              ->relationship('town', 'name')
+              ->required(),
+            Forms\Components\TextInput::make('name')
+              ->label('Nombre del Proyecto')
+              ->required()
+              ->maxLength(255),
+          ])->columns(3)
       ]);
   }
 
@@ -46,12 +57,16 @@ class UrbanizationResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('state.name')
+          ->label('Provincia')
           ->sortable(),
         Tables\Columns\TextColumn::make('city.name')
+          ->label('Distrito')
           ->sortable(),
         Tables\Columns\TextColumn::make('town.name')
+          ->label('Corregimiento')
           ->sortable(),
         Tables\Columns\TextColumn::make('name')
+          ->label('Nombre del Proyecto')
           ->searchable(),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
@@ -66,7 +81,12 @@ class UrbanizationResource extends Resource
         //
       ])
       ->actions([
-        Tables\Actions\EditAction::make(),
+        Tables\Actions\ViewAction::make()
+          ->iconButton(),
+        Tables\Actions\EditAction::make()
+          ->iconButton(),
+        Tables\Actions\DeleteAction::make()
+          ->iconButton(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

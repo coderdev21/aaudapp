@@ -23,7 +23,7 @@ class Certificate extends Model
     parent::boot();
 
     static::creating(function ($model) {
-      
+
       //Busca en la tabla 'certificates' el ultimo id y le suma uno mas
       //para agregarlo al 'control_number'
       $lastRecordId = DB::table($model->getTable())->max('id');
@@ -32,7 +32,7 @@ class Certificate extends Model
       $model->control_number = $nextId . '-' . $currentYear;
 
       //Agrega la fecha de hoy y le suma 30 días
-      $model->expiration_date = Carbon::now()->addDays(30); 
+      $model->expiration_date = Carbon::now()->addDays(30);
     });
   }
 
@@ -47,8 +47,8 @@ class Certificate extends Model
     'town_id',
     'address',
     'control_number',
-    'agency',
-    'created_by',
+    'agency_id',
+    'user_id',
     'canceled_by',
     'description',
     'expiration_date',
@@ -80,6 +80,12 @@ class Certificate extends Model
     $query = DB::table('employees')->where('user_id', Auth::user()->user_id);
     return $query;
   }
+
+  public function user(): BelongsTo
+  {
+    return $this->belongsTo(User::class);
+  }
+
 
   public function state(): BelongsTo
   {

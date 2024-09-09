@@ -13,12 +13,15 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Section;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerOmissionResource extends Resource
 {
   protected static ?string $model = CustomerOmission::class;
   protected static ?string $navigationGroup = 'Comercialización';
-  protected static ?string $label = 'Clientes Omisión';
+  protected static ?string $pluralModelLabel = 'Clientes por Omisión';
+  protected static ?string $navigationLabel = 'Clientes por Omisión';
+  protected static ?string $modelLabel = 'Cliente por Omisión';
   protected static ?string $navigationIcon = 'fas-people-roof';
   protected static ?int $navigationSort = 2;
 
@@ -68,19 +71,20 @@ class CustomerOmissionResource extends Resource
               ->maxLength(255),
             Forms\Components\Select::make('urbanization_id')
               ->label('Proyecto')
+              ->searchable()
+              ->preload()
               ->relationship('urbanization', 'name')
               ->required(),
             Forms\Components\TextInput::make('status')
               ->label('Status')
               ->required()
               ->maxLength(255),
-            Forms\Components\TextInput::make('user_id')
-              ->label('Creado por:')
-              ->required(),
-            Forms\Components\Select::make('agency_id')
-              ->label('Agencia')
-              ->relationship('agency', 'name')
-              ->required(),
+            Forms\Components\Hidden::make('user_id')
+              ->default(Auth::user()->id)
+              ->dehydrated(),
+            Forms\Components\Hidden::make('agency_id')
+              ->default(Auth::check() ? Auth::user()->employee->agency->id : 'No user')
+              ->dehydrated(),
           ])->columns(4)
       ]);
   }

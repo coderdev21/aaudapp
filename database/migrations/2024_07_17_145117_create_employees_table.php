@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('apellido_paterno');
             $table->string('apellido_materno')->nullable();
             $table->string('fullname')->virtualAs("CONCAT(nombre, ' ', segundo_nombre, ' ', apellido_paterno, ' ', apellido_materno)");
-
+            $table->string('shortfullname')->virtualAs("CONCAT(nombre, ' ', apellido_paterno)");
             $table->string('cedula')->unique();
             $table->string('seguro_social')->default('0');
             $table->boolean('genero')->default(false);

@@ -22,8 +22,10 @@ return new class extends Migration
             $table->foreignId('town_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('address');
             $table->string('control_number');
-            $table->string('agency');
-            $table->string('created_by');
+            //$table->string('agency');
+            $table->foreignId('agency_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            //$table->string('created_by');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('canceled_by')->nullable();
             $table->text('description')->nullable();
             $table->date('expiration_date');

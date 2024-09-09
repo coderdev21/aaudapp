@@ -41,6 +41,7 @@ class CreateCertificateRecord extends CreateRecord
   protected function mutateFormDataBeforeCreate(array $data): array
   {
     // If needed, you can further manipulate the data here before saving.
+    //dd($data);
     return $data;
   }
 }
@@ -50,7 +51,9 @@ class CertificateResource extends Resource
 
   protected static ?string $model = Certificate::class;
   protected static ?string $navigationGroup = 'Comercialización';
-  protected static ?string $label = 'Paz y Salvo';
+  protected static ?string $pluralModelLabel = 'Paz y Salvos';
+  protected static ?string $navigationLabel = 'Paz y Salvos';
+  protected static ?string $modelLabel = 'Paz y Salvo';
   protected static ?string $navigationIcon = 'fas-file-invoice';
   protected static ?int $navigationSort = 3;
 
@@ -113,26 +116,24 @@ class CertificateResource extends Resource
               ->disabled()
               ->dehydrated()
               ->columnSpanFull(),
-          ])->columns(3),
-        Section::make('Información de Comercialización')
-          ->schema([
-            Forms\Components\TextInput::make('created_by')
-              ->label('Elaborado por:')
-              ->default(function () {
-                $name = Auth::user()->employee->nombre . ' ' . Auth::user()->employee->apellido_paterno;
-                return $name;
-              })
-              ->disabled()
-              ->dehydrated(),
-            Forms\Components\TextInput::make('agency')
-              ->label('Agencia')
-              ->default(Auth::check() ? Auth::user()->employee->agency->name : 'No user')
-              ->disabled()
-              ->dehydrated(),
             Forms\Components\Textarea::make('description')
               ->label('Observación')
               ->columnSpanFull(),
-          ])->columns(4),
+            Forms\Components\Hidden::make('user_id')
+              //->label('Elaborado por:')
+              /*               ->default(function () {
+                $name = Auth::user()->employee->nombre . ' ' . Auth::user()->employee->apellido_paterno;
+                return $name;
+              }) */
+              ->default(Auth::user()->id)
+              //->disabled()
+              ->dehydrated(),
+            Forms\Components\Hidden::make('agency_id')
+              //->label('Agencia')
+              ->default(Auth::check() ? Auth::user()->employee->agency->id : 'No user')
+              //->disabled()
+              ->dehydrated(),
+          ])->columns(3),
       ]);
   }
 
@@ -168,10 +169,10 @@ class CertificateResource extends Resource
         /* Tables\Columns\TextColumn::make('customer_name')
           ->label('Cliente')
           ->sortable(), */
-        Tables\Columns\TextColumn::make('agency')
+        Tables\Columns\TextColumn::make('agency.name')
           ->label('Agencia')
           ->sortable(),
-        Tables\Columns\TextColumn::make('created_by')
+        Tables\Columns\TextColumn::make('user.employee.shortfullname')
           ->label('Creado por')
           ->sortable(),
         /*         Tables\Columns\TextColumn::make('updated_at')
@@ -222,11 +223,11 @@ class CertificateResource extends Resource
               ->label('Fecha de Emisión')
               ->formatStateUsing(function ($state) {
                 Carbon::setlocale(config('app.locale'));
-                return Carbon::parse($state)->translatedFormat('d \de\ F \de\ Y');
+                return Carbon::parse($state)->translatedFormat('d F Y');
               }),
-            Components\TextEntry::make('created_by')
+            Components\TextEntry::make('user.employee.shortfullname')
               ->label('Funcionario'),
-            Components\TextEntry::make('agency')
+            Components\TextEntry::make('agency.name')
               ->label('Agencia'),
             Components\TextEntry::make('expiration_date')
               ->label('Fecha de Expiración')
@@ -240,7 +241,7 @@ class CertificateResource extends Resource
               })
               ->formatStateUsing(function ($state) {
                 Carbon::setlocale(config('app.locale'));
-                return Carbon::parse($state)->translatedFormat('d \de\ F \de\ Y');
+                return Carbon::parse($state)->translatedFormat('d F Y');
               }),
           ])->columns(5),
         Components\Section::make('Datos del Cliente')

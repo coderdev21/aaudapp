@@ -94,19 +94,19 @@
                             </td>
                             <td align ="center" style="border: 1px solid black">FECHA DE EMISIÓN
                                 <br>
-                                <strong>{{ $item->created_at }}</strong>
+                                <strong>{{ Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</strong>
                             </td>
                             <td align ="center" style="border: 1px solid black">AGENCIA
                                 <br>
-                                <strong>{{ $item->agency }}</strong>
+                                <strong>{{ $item->agency->name }}</strong>
                             </td>
                             <td align ="center" style="border: 1px solid black">CREADO POR
                                 <br>
-                                <strong>{{ $item->created_by }}</strong>
+                                <strong>{{ $item->user->employee->shortfullname }}</strong>
                             </td>
                             <td align ="center" style="border: 1px solid black">VALIDO HASTA
                                 <br>
-                                <strong>{{ $item->expiration_date }}</strong>
+                                <strong>{{ Carbon\Carbon::parse($item->expiration_date)->translatedFormat('d F Y') }}</strong>
                             </td>
                         </tr>
                         <tr>
