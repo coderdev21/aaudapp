@@ -29,7 +29,7 @@ class CustomerResource extends Resource
   protected static ?string $label = 'Clientes';
   protected static ?string $navigationIcon = 'fas-house-user';
   protected static ?string $navigationGroup = 'Comercialización';
-  protected static ?int $navigationSort = 3;
+  protected static ?int $navigationSort = 1;
 
   public static function form(Form $form): Form
   {
@@ -119,9 +119,12 @@ class CustomerResource extends Resource
         //
       ])
       ->actions([
-        Tables\Actions\ViewAction::make(),
-        Tables\Actions\EditAction::make(),
-        Tables\Actions\DeleteAction::make(),
+        Tables\Actions\ViewAction::make()
+          ->iconButton(),
+        Tables\Actions\EditAction::make()
+          ->iconButton(),
+        Tables\Actions\DeleteAction::make()
+          ->iconButton(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

@@ -32,4 +32,9 @@ class State extends Model
   {
     return $this->hasMany(Certificate::class);
   }
+
+  public function urbanization(): HasMany
+  {
+    return $this->hasMany(Urbanization::class);
+  }
 }

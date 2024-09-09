@@ -49,11 +49,10 @@ class CertificateResource extends Resource
 {
 
   protected static ?string $model = Certificate::class;
-  protected static ?string $navigationParentItem = 'Clientes';
   protected static ?string $navigationGroup = 'Comercialización';
   protected static ?string $label = 'Paz y Salvo';
   protected static ?string $navigationIcon = 'fas-file-invoice';
-  protected static ?int $navigationSort = 2;
+  protected static ?int $navigationSort = 3;
 
   public static function form(Form $form): Form
   {
@@ -186,17 +185,22 @@ class CertificateResource extends Resource
       ])
       ->actions([
         Tables\Actions\Action::make('download')
-          ->label('Imprimir')
+          //->label('Imprimir')
           ->icon('fas-file-invoice')
+          ->iconButton()
           ->url(
             fn($record): string => route('pdf.pazysalvo', ['id' => $record->id]),
             shouldOpenInNewTab: true
           )
           ->color('info'),
-        Tables\Actions\ViewAction::make(),
-        Tables\Actions\EditAction::make(),
-        ActivityLogTimelineTableAction::make('Activities'),
-        Tables\Actions\DeleteAction::make(),
+        Tables\Actions\ViewAction::make()
+          ->iconButton(),
+        Tables\Actions\EditAction::make()
+          ->iconButton(),
+        ActivityLogTimelineTableAction::make('Activities')
+          ->iconButton(),
+        Tables\Actions\DeleteAction::make()
+          ->iconButton(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

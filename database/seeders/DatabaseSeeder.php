@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
       CorrespondenceTypeSeeder::class,
       CustomerSeeder::class,
       RolePermissionSeeder::class,
+      CustomerTypeSeeder::class,
+      TasaSeeder::class,
+      UrbanizationSeeder::class,
     ]);
   }
 }

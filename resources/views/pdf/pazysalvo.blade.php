@@ -112,13 +112,6 @@
                         <tr>
                             <td colspan="5" style="height: 150px; vertical-align: top;">
                                 <p class="contenido">La Autoridad de Aseo Urbano y Domiciliario de Panamá certifica que
-<<<<<<< HEAD
-                                    el cliente identificado con número de <strong>NIC: {{ $item->nic }}</strong>,
-                                    perteniciente a la finca <strong>{{ $item->finca }}</strong>, a nombre de <strong>{{ $item->customer_name }}</strong>
-                                    ubicada en <strong>{{ $item->address }}</strong>, corregimiento de <strong>{{ $item->town }}</strong>,
-                                    distrito de <strong>{{ $item->city }}</strong>, provincia de <strong>{{ $item->state }}</strong>,
-                                    se encuentra Paz y Salvo con esta institución por concepto de Tasa de Aseo.
-=======
                                     el cliente
                                     identificado
                                     con número de <strong>NIC: {{ $item->nic }}</strong>, perteniciente a la finca
@@ -132,7 +125,6 @@
                                     provincia de <strong>{{ $item->state->name }}</strong>, se encuentra Paz y Salvo con
                                     esta
                                     institución por concepto de Tasa de Aseo.
->>>>>>> 46e390164bcbff5f4368f1054cbf97e5ade77c5b
                                 </p>
                                 <p class="contenido">
                                     <strong>OBSERVACIÓN:</strong> {{ $item->description }}
@@ -173,16 +165,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="qr">
+{{--                             <td class="qr">
                                 <img src="{{ 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('/images/qrcodeexample.jpg'))) }}"
                                     width="100">
-                            </td>
+                            </td> --}}
                             <td colspan="2" class="aviso" style="padding-right: 50px">
                                 <h4>AVISO DE VALIDEZ Y CONFIRMACIÓN DE LA PRESENTE CERTIFIACIÓN</h4>
                                 <p class="footer">
                                     Para su validez, esta certifiación debe ser verificada en la dirección de internet:
-                                    http://pazysalvo.aaud.gob.pa o escaneando el código QR por parte del interesado o
-                                    del funcionario público o privado a quien deba presentarse. <br>Edificio P.H. Multiplaza | Ave. Justo Arosemena y calle 26 | Tel. (+507) 506-1500 / 506-1582 / 506-1574 / 506-1580
+                                    http://pazysalvo.aaud.gob.pa por parte del interesado o del funcionario público o privado a quien deba presentarse. <br>Edificio P.H. Multiplaza | Ave. Justo Arosemena y calle 26 | Tel. (+507) 506-1500 / 506-1582 / 506-1574 / 506-1580
                                 </p>
                             </td>
                             <td colspan="2" align="right">

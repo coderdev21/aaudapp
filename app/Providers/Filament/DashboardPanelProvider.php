@@ -35,7 +35,7 @@ class DashboardPanelProvider extends PanelProvider
       ->default()
       ->id('dashboard')
       ->databaseNotifications()
-      ->path('dashboard')
+      ->path('/')
       ->favicon(asset('images/logoaaud.png'))
       ->login(CustomLogin::class)
       ->profile(EditProfile::class)

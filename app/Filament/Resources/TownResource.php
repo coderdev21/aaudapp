@@ -53,11 +53,9 @@ class TownResource extends Resource
           ->searchable(),
         Tables\Columns\TextColumn::make('state.name')
           ->label('Provincia')
-          ->numeric()
           ->sortable(),
         Tables\Columns\TextColumn::make('city.name')
           ->label('Distrito')
-          ->numeric()
           ->sortable(),
         Tables\Columns\TextColumn::make('created_at')
           ->label('Creado el')

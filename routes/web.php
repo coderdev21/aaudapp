@@ -5,9 +5,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/pdf/generate/certificate/{id}', [PdfController::class,'CertificateRecords'])->name('pdf.pazysalvo');
 
