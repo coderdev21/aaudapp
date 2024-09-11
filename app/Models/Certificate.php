@@ -29,7 +29,7 @@ class Certificate extends Model
       $lastRecordId = DB::table($model->getTable())->max('id');
       $nextId = $lastRecordId ? $lastRecordId + 1 : 1;
       $currentYear = Carbon::now()->year;
-      $model->control_number = $nextId . '-' . $currentYear;
+      $model->control_number = 'C' . $nextId . '-' . $currentYear;
 
       //Agrega la fecha de hoy y le suma 30 días
       $model->expiration_date = Carbon::now()->addDays(30);

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('genero')->default(false);
             $table->boolean('estado_civil')->default(false);
             $table->date('fecha_nacimiento')->default('1900-01-01');
-            //$table->string('tipo_sangre')->default('O+');
+            $table->string('tipo_sangre')->default('O+');
             $table->string('image_url')->nullable();
 
             //Datos de Dirección

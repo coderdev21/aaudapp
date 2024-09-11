@@ -9,6 +9,10 @@ class CustomerType extends Model
 {
   use HasFactory;
 
+  protected $fillable = [
+    'name'
+  ];
+
   public function customerOmission()
   {
     return $this->hasMany(CustomerOmission::class);

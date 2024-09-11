@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateUrbanization extends CreateRecord
 {
     protected static string $resource = UrbanizationResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+      return $this->getResource()::getUrl('index');
+    }
 }

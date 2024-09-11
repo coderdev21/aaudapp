@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateTasa extends CreateRecord
 {
     protected static string $resource = TasaResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+      return $this->getResource()::getUrl('index');
+    }
 }
