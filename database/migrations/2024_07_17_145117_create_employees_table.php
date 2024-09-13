@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('fullname')->virtualAs("CONCAT(nombre, ' ', segundo_nombre, ' ', apellido_paterno, ' ', apellido_materno)");
             $table->string('shortfullname')->virtualAs("CONCAT(nombre, ' ', apellido_paterno)");
             $table->string('cedula')->unique();
-            $table->string('seguro_social')->default('0');
+            $table->string('seguro_social')->nullable();
             $table->boolean('genero')->default(false);
             $table->boolean('estado_civil')->default(false);
             $table->date('fecha_nacimiento')->default('1900-01-01');
@@ -29,30 +29,30 @@ return new class extends Migration
             $table->string('image_url')->nullable();
 
             //Datos de Dirección
-            $table->foreignId('state_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('town_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('address')->default('Panamá');
+            $table->foreignId('state_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('city_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('town_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('address')->nullable();
 
             //Datos de Contratación
-            $table->string('employee_number');
+            $table->string('employee_number')->unique();
             $table->foreignId('employee_type_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('status')->nullable();
             $table->date('start')->default('1900-01-01');
             $table->date('end')->default('1900-01-01');
             $table->foreignId('agency_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('department_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('numero_resolucion')->default('00000');
-            $table->string('numero_contrato')->default('00000');
-            $table->string('numero_posicion');
-            $table->string('objeto_gasto')->default('0');
-            $table->string('numero_planilla')->default('0');
-            $table->string('numero_partida')->default('0');
+            $table->string('numero_resolucion')->nullable();
+            $table->string('numero_contrato')->nullable();
+            $table->string('numero_posicion')->nullable();
+            $table->string('objeto_gasto')->nullable();
+            $table->string('numero_planilla')->nullable();
+            $table->string('numero_partida')->nullable();
             $table->float('salary')->default('0.00');
 
             //Datos de Planilla
-            $table->float('gastos_representacion')->default('0');
-            $table->string('numero_partida_gasto_representacion')->default('0');
+            $table->float('gastos_representacion')->default('0.00');
+            $table->string('numero_partida_gasto_representacion')->default('999999');
             //$table->float('aditional_payment')->default('0');
             $table->foreignId('bank_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('tipo_cuenta')->nullable();

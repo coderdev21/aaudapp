@@ -14,4 +14,17 @@ class CreateEmployee extends CreateRecord
   {
     return $this->getResource()::getUrl('index');
   }
+
+/*   protected function mutateFormDataBeforeCreate(array $data): array
+  {
+
+    //Convierte los nombres en primera letra mayuscula
+    $data['nombre'] = strtoupper($data['name']);
+    $data['segundo_nombre'] = strtoupper($data['segundo_nombre']);
+    $data['apellido_paterno'] = strtoupper($data['apellido_paterno']);
+    $data['apellido_materno'] = strtoupper($data['apellido_materno']);
+
+
+    return $data;
+  } */
 }

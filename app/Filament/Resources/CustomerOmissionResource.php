@@ -94,37 +94,43 @@ class CustomerOmissionResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('contrato')
+          ->label('No. Contrato')
           ->searchable(),
         Tables\Columns\TextColumn::make('finca')
+          ->label('No. Finca')
           ->searchable(),
-        Tables\Columns\TextColumn::make('customer_type_id')
-          ->numeric()
+        Tables\Columns\TextColumn::make('customerType.name')
+          ->label('Tipo de Cliente')
           ->sortable(),
-        Tables\Columns\TextColumn::make('tasa_id')
-          ->numeric()
+        /* Tables\Columns\TextColumn::make('tasa.name')
+          ->label('Tasa')
           ->sortable(),
-        Tables\Columns\TextColumn::make('start')
+                 Tables\Columns\TextColumn::make('start')
+          ->label('Fecha de Inicio')
           ->dateTime()
           ->sortable(),
-        Tables\Columns\TextColumn::make('agency_id')
-          ->numeric()
-          ->sortable(),
+        Tables\Columns\TextColumn::make('agency.name')
+          ->label('Agencia')
+          ->sortable(), */
         Tables\Columns\TextColumn::make('name')
+          ->label('Nombre')
           ->searchable(),
         Tables\Columns\TextColumn::make('cedula')
+          ->label('Cédula')
           ->searchable(),
-        Tables\Columns\TextColumn::make('telefono')
+        /*         Tables\Columns\TextColumn::make('telefono')
+          ->label('Teléfono')
           ->searchable(),
         Tables\Columns\TextColumn::make('email')
-          ->searchable(),
-        Tables\Columns\TextColumn::make('urbanization_id')
-          ->numeric()
+          ->searchable(), */
+        Tables\Columns\TextColumn::make('urbanization.name')
+          ->label('Ubanización')
           ->sortable(),
-        Tables\Columns\TextColumn::make('status')
+        /*         Tables\Columns\TextColumn::make('status')
           ->searchable(),
         Tables\Columns\TextColumn::make('user_id')
           ->numeric()
-          ->sortable(),
+          ->sortable(), */
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
           ->sortable()
@@ -138,7 +144,12 @@ class CustomerOmissionResource extends Resource
         //
       ])
       ->actions([
-        Tables\Actions\EditAction::make(),
+        Tables\Actions\ViewAction::make()
+          ->iconButton(),
+        Tables\Actions\EditAction::make()
+          ->iconButton(),
+        Tables\Actions\DeleteAction::make()
+          ->iconButton(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

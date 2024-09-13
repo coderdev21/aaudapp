@@ -70,10 +70,8 @@ class EmployeeResource extends Resource
                       ->maxLength(255),
                     TextInput::make('seguro_social')
                       ->label('No. de Seguro Social')
-                      ->required()
                       ->maxLength(255),
-                    DatePicker::make('fecha_nacimiento')
-                      ->required(),
+                    DatePicker::make('fecha_nacimiento'),
                     Radio::make('genero')
                       ->label('Genero')
                       ->options([
@@ -108,8 +106,7 @@ class EmployeeResource extends Resource
                       ->searchable()
                       ->preload()
                       ->live()
-                      ->native(false)
-                      ->required(),
+                      ->native(false),
                     Select::make('city_id')
                       ->label('Distrito')
                       ->options(fn(Get $get): Collection => City::query()
@@ -117,8 +114,7 @@ class EmployeeResource extends Resource
                         ->pluck('name', 'id'))
                       ->live()
                       ->preload()
-                      ->searchable()
-                      ->required(),
+                      ->searchable(),
                     Select::make('town_id')
                       ->label('Corregimiento')
                       ->options(fn(Get $get): Collection => Town::query()
@@ -126,11 +122,9 @@ class EmployeeResource extends Resource
                         ->pluck('name', 'id'))
                       ->live()
                       ->preload()
-                      ->searchable()
-                      ->required(),
+                      ->searchable(),
                     TextInput::make('address')
                       ->label('Dirección')
-                      ->required()
                       ->maxLength(255)
                       ->columnSpan('full'),
                   ])->columns(3),
@@ -179,14 +173,13 @@ class EmployeeResource extends Resource
                         'LS' => 'Licencia Sin Sueldo',
                         'LE' => 'Licencia por Enfermedad',
                       ])
+                      ->default('A')
                       ->native(false)
                       ->required(),
                     DatePicker::make('start')
-                      ->label('Fecha de Incio')
-                      ->required(),
+                      ->label('Fecha de Incio'),
                     DatePicker::make('end')
-                      ->label('Fecha de Terminación')
-                      ->required(),
+                      ->label('Fecha de Terminación'),
                     Select::make('agency_id')
                       ->label('Agencia')
                       ->relationship(name: 'agency', titleAttribute: 'name')
@@ -202,48 +195,39 @@ class EmployeeResource extends Resource
                       ->columnSpan(2),
                     TextInput::make('numero_resolucion')
                       ->label('No. de Resolución')
-                      ->required()
                       ->maxLength(255)
                       ->default(00000),
                     TextInput::make('numero_contrato')
                       ->label('No. de Contrato')
-                      ->required()
                       ->maxLength(255)
                       ->default(00000),
                     TextInput::make('numero_posicion')
                       ->label('Numero de Posición')
-                      ->required()
                       ->maxLength(255),
                     TextInput::make('objeto_gasto')
                       ->label('Objeto Gasto')
-                      ->required()
                       ->maxLength(255)
                       ->default(0),
                     TextInput::make('numero_planilla')
                       ->label('No. de Planilla')
-                      ->required()
                       ->maxLength(255)
                       ->default(0),
                     TextInput::make('numero_partida')
                       ->label('No. de Partida')
-                      ->required()
                       ->maxLength(255)
                       ->default(0),
                     TextInput::make('salary')
                       ->label('Salario')
                       ->mask(RawJs::make('$money($input)'))
                       ->stripCharacters(',')
-                      ->numeric()
-                      ->required(),
+                      ->numeric(),
                     //->default(0),
                     TextInput::make('gastos_representacion')
                       ->label('Gastos de Representación')
-                      ->required()
                       ->numeric()
                       ->default(0),
                     TextInput::make('numero_partida_gasto_representacion')
                       ->label('No. Partida / Gastos de Rep.')
-                      ->required()
                       ->maxLength(255)
                       ->default(0)
                   ])->columns(4),

@@ -56,6 +56,9 @@ class UrbanizationResource extends Resource
   {
     return $table
       ->columns([
+        Tables\Columns\TextColumn::make('name')
+          ->label('Nombre del Proyecto')
+          ->searchable(),
         Tables\Columns\TextColumn::make('state.name')
           ->label('Provincia')
           ->sortable(),
@@ -65,9 +68,6 @@ class UrbanizationResource extends Resource
         Tables\Columns\TextColumn::make('town.name')
           ->label('Corregimiento')
           ->sortable(),
-        Tables\Columns\TextColumn::make('name')
-          ->label('Nombre del Proyecto')
-          ->searchable(),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
           ->sortable()

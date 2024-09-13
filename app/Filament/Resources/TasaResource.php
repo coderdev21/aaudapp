@@ -43,6 +43,7 @@ class TasaResource extends Resource
     return $table
       ->columns([
         Tables\Columns\TextColumn::make('tasa')
+        ->label('Tasa de Aseo Residencial')
           ->money('B/.', locale: 'pa'),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()

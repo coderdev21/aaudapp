@@ -217,15 +217,14 @@
                                                             cual solo debe ser usada para fines laborales y sus
                                                             credenciales para acceso al Sistema de Gestión
                                                             Administrativa de la Autoridad de Aseo, el cual puedes
-                                                            acceder en este enlace <a href="https://app.aaud.gob.pa"
+                                                            acceder en este enlace <a href="http://172.25.30.22"
                                                                 target="_blank"
-                                                                style="color: #1890ff; text-decoration:  underline;">https://app.aaud.gob.pa.</a></span><a
+                                                                style="color: #1890ff; text-decoration:  underline;">SISTEMA DE AAUD</a></span><a
                                                             href="https://app.aaud.gob.pa" target="_blank"
-                                                            style="color: #1890ff; text-decoration:  underline;"></a><br><br><strong>Usuario
-                                                            es:</strong> {{ $data['name'] }}<br><strong>Correo
+                                                            style="color: #1890ff; text-decoration:  underline;"></a><br><br><strong>Usuario:</strong> {{ $data['name'] }}<br><strong>Correo
                                                             Electrónico:</strong> {{ $data['email'] }}<br><strong>Contraseña:&nbsp;</strong>{{ $data['password'] }}<br><br><strong>Nota:
                                                             Es importante que cambie su contraseña una vez haya
-                                                            ingresado por primera vez.</strong><br></div>
+                                                            ingresado.</strong><br></div>
                                                 </td>
                                             </tr>
                                         </table>
