@@ -106,6 +106,11 @@ class ComercialClientResource extends Resource
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::promedioBolsaDiaria($get, $set);
                     Self::promedioBolsaMensuales($get, $set);
+                    Self::promedioGalonesMensuales($get, $set);
+                    Self::metroCubicosMensuales($get, $set);
+                    Self::yardasCubicasMensuales($get, $set);
+                    Self::tarifaMetros($get, $set);
+                    Self::tarifaYardas($get, $set);
                   })
                   ->columnSpan(1),
                 Forms\Components\TextInput::make('generacion')
@@ -117,6 +122,11 @@ class ComercialClientResource extends Resource
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::promedioBolsaDiaria($get, $set);
                     Self::promedioBolsaMensuales($get, $set);
+                    Self::promedioGalonesMensuales($get, $set);
+                    Self::metroCubicosMensuales($get, $set);
+                    Self::yardasCubicasMensuales($get, $set);
+                    Self::tarifaMetros($get, $set);
+                    Self::tarifaYardas($get, $set);
                   }),
                 Forms\Components\Select::make('dias_laborables')
                   ->label('Cant. de días laborables')
@@ -132,6 +142,10 @@ class ComercialClientResource extends Resource
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::promedioBolsaMensuales($get, $set);
                     Self::promedioGalonesMensuales($get, $set);
+                    Self::metroCubicosMensuales($get, $set);
+                    Self::yardasCubicasMensuales($get, $set);
+                    Self::tarifaMetros($get, $set);
+                    Self::tarifaYardas($get, $set);
                   }),
                 Forms\Components\Select::make('tipo_bolsa')
                   ->label('Tipo de Bolsas')
@@ -145,6 +159,10 @@ class ComercialClientResource extends Resource
                   ->live(onBlur: true)
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::promedioGalonesMensuales($get, $set);
+                    Self::metroCubicosMensuales($get, $set);
+                    Self::yardasCubicasMensuales($get, $set);
+                    Self::tarifaMetros($get, $set);
+                    Self::tarifaYardas($get, $set);
                   })
               ])->grow(false),
             Section::make('Calculo de Tarifa de Aseo')
@@ -156,25 +174,43 @@ class ComercialClientResource extends Resource
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::promedioBolsaMensuales($get, $set);
                   })
-                  ->required(),
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('prom_bolsa_mensual')
-                  ->label('Prom. de Bolsas Mensuales'),
+                  ->label('Prom. de Bolsas Mensuales')
+                  ->live(onBlur: true)
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('prom_gal_mensual')
                   ->label('Prom. de Galones Mensuales')
                   ->live(onBlur: true)
                   ->afterStateUpdated(function (Get $get, Set $set) {
                     Self::metroCubicosMensuales($get, $set);
-                    Self::promedioGalonesMensuales($get, $set);
-                  }),
+                    Self::yardasCubicasMensuales($get, $set);
+                  })
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('mts_cub_mensual')
-                  ->label('Metros Cúbicos Mensuales'),
+                  ->label('Metros Cúbicos Mensuales')
+                  ->live(onBlur: true)
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('yrd_cub_mensual')
-                  ->label('Yardas Cúbicas Mensuales'),
+                  ->label('Yardas Cúbicas Mensuales')
+                  ->live(onBlur: true)
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('tarifa_mts')
-                  ->label('Tarifa (mts)'),
+                  ->label('Tarifa (mts)')
+                  ->live(onBlur: true)
+                  ->disabled()
+                  ->dehydrated(),
                 Forms\Components\TextInput::make('tarifa_yd')
-                  ->label('Tarifa (yd)'),
-              ])->columns(2)
+                  ->label('Tarifa (yd)')
+                  ->live(onBlur: true)
+                  ->disabled()
+                  ->dehydrated(),
+              ])
           ])
         ]),
 
@@ -268,11 +304,21 @@ class ComercialClientResource extends Resource
 
   public static function metroCubicosMensuales(Get $get, Set $set): void
   {
-    $set('mts_cub_mensual', round($get('prom_gal_mensual') * 264.172, 2));
+    $set('mts_cub_mensual', round($get('prom_gal_mensual') / 264.172, 2));
   }
 
   public static function yardasCubicasMensuales(Get $get, Set $set): void
   {
-    $set('yrd_cub_mensual', round($get('prom_bolsa_mensual') * $get('tipo_bolsa'), 2));
+    $set('yrd_cub_mensual', round($get('prom_gal_mensual') / 201.974, 2));
+  }
+
+  public static function tarifaMetros(Get $get, Set $set): void
+  {
+    $set('tarifa_mts', round($get('mts_cub_mensual') * 18.70, 2));
+  }
+
+  public static function tarifaYardas(Get $get, Set $set): void
+  {
+    $set('tarifa_yd', round($get('yrd_cub_mensual') * 14.30, 2));
   }
 }
