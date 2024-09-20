@@ -56,7 +56,7 @@ return new class extends Migration
             //$table->float('aditional_payment')->default('0');
             $table->foreignId('bank_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('tipo_cuenta')->nullable();
-            $table->string('accout_number')->nullable();
+            $table->string('account_number')->nullable();
             $table->string('tipo_cuenta_beneficiario')->nullable();
             $table->string('card_type')->nullable();
 

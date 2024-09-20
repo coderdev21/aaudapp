@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class State extends Model
 {
+
+  protected $fillable = [
+    'name'
+  ];
+
   public function city(): HasMany
   {
     return $this->hasMany(City::class);
@@ -36,5 +41,15 @@ class State extends Model
   public function urbanization(): HasMany
   {
     return $this->hasMany(Urbanization::class);
+  }
+
+  public function comercialClient(): HasMany
+  {
+    return $this->hasMany(Customer::class);
+  }
+
+  public function customerOmission(): HasMany
+  {
+    return $this->hasMany(Customer::class);
   }
 }

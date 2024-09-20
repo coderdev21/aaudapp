@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Closure;
 use Filament\Infolists\Components;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\CreateRecord;
@@ -55,7 +56,7 @@ class CertificateResource extends Resource
   protected static ?string $navigationLabel = 'Paz y Salvos';
   protected static ?string $modelLabel = 'Paz y Salvo';
   protected static ?string $navigationIcon = 'fas-file-invoice';
-  protected static ?int $navigationSort = 3;
+  protected static ?int $navigationSort = 4;
 
   public static function form(Form $form): Form
   {

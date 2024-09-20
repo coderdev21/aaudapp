@@ -31,7 +31,6 @@ return new class extends Migration
       $table->foreignId('urbanization_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
       $table->string('status');
       $table->text('observacion')->nullable();
-      $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
       $table->timestamps();
     });
   }

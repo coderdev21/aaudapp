@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CorrespondenceType extends Model
 {
-    public function correspondence(): HasMany
-    {
-        return $this->hasMany(Correspondence::class);
-    }
+
+  protected $fillable = [
+    'name'
+  ];
+
+  public function correspondence(): HasMany
+  {
+    return $this->hasMany(Correspondence::class);
+  }
 }

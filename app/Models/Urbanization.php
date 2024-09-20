@@ -9,6 +9,13 @@ class Urbanization extends Model
 {
   use HasFactory;
 
+  protected $fillable = [
+    'state_id',
+    'city_id',
+    'town_id',
+    'name',
+  ];
+
   public function customerOmission()
   {
     return $this->hasMany(CustomerOmission::class);

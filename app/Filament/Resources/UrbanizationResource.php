@@ -4,10 +4,15 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UrbanizationResource\Pages;
 use App\Filament\Resources\UrbanizationResource\RelationManagers;
+use App\Models\City;
+use App\Models\Town;
 use App\Models\Urbanization;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Illuminate\Support\Collection;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -23,7 +28,7 @@ class UrbanizationResource extends Resource
   protected static ?string $navigationLabel = 'Proyectos';
   protected static ?string $modelLabel = 'Proyecto';
   protected static ?string $navigationIcon = 'fas-city';
-  protected static ?int $navigationSort = 4;
+  protected static ?int $navigationSort = 5;
 
   public static function form(Form $form): Form
   {
@@ -35,14 +40,34 @@ class UrbanizationResource extends Resource
             Forms\Components\Select::make('state_id')
               ->label('Provincia')
               ->relationship('state', 'name')
-              ->required(),
+              ->searchable()
+              ->required()
+              ->preload()
+              ->live()
+              ->afterStateUpdated(function (Set $set) {
+                $set('city_id', null);
+                $set('town_id', null);
+              }),
             Forms\Components\Select::make('city_id')
               ->label('Distrito')
-              ->relationship('city', 'name')
+              ->options(fn(Get $get): Collection => City::query()
+                ->where('state_id', $get('state_id'))
+                ->pluck('name', 'id'))
+              ->searchable()
+              ->preload()
+              ->live()
+              ->afterStateUpdated(function (Set $set) {
+                $set('town_id', null);
+              })
               ->required(),
             Forms\Components\Select::make('town_id')
               ->label('Corregimiento')
-              ->relationship('town', 'name')
+              ->options(fn(Get $get): Collection => Town::query()
+                ->where('city_id', $get('city_id'))
+                ->pluck('name', 'id'))
+              ->searchable()
+              ->preload()
+              ->live()
               ->required(),
             Forms\Components\TextInput::make('name')
               ->label('Nombre del Proyecto')

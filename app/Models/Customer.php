@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
+
+  protected $fillable = [
+    'nic',
+    'finca',
+    'name',
+    'state_id',
+    'city_id',
+    'town_id',
+    'address',
+    'cedula',
+    'email',
+    'telefono',
+    'convenio_bancario',
+    'arreglo_pago'
+  ];
+
   public function certificate(): HasMany
   {
     return $this->hasMany(Certificate::class);

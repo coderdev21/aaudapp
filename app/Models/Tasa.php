@@ -9,6 +9,10 @@ class Tasa extends Model
 {
   use HasFactory;
 
+  protected $fillable = [
+    'tasa',
+  ];
+
   public function customerOmission()
   {
     return $this->hasMany(CustomerOmission::class);

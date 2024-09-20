@@ -39,7 +39,8 @@ class UserResource extends Resource
           ->description('Ingrese los datos del usuario.')
           ->schema([
             Forms\Components\TextInput::make('name')
-              //->email()
+              ->alpha()
+              ->unique()
               ->required()
               ->suffix('@aaud.gob.pa')
               ->afterStateUpdated(fn(Set $set, ?string $state) => $set('email', $state . '@aaud.gob.pa'))

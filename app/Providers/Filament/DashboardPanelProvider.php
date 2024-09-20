@@ -43,11 +43,12 @@ class DashboardPanelProvider extends PanelProvider
       ->profile(EditProfile::class)
       ->brandName('Autoridad de Aseo Urbano y Domiciliario')
       ->brandLogo(asset('images/logogobiernoaaud.png'))
+      ->darkModeBrandLogo(asset('images/logogobiernoaaud_darkmode.png'))
       ->brandLogoHeight(fn() => Auth::check() ? '4rem' : '8rem')
       ->colors([
         'danger' => Color::hex('#ff6666'),
         'gray' => Color::hex('#595959'),
-        'info' => Color::hex('#15a04f'),
+        'info' => Color::hex('#1ca1e6'),
         'primary' => Color::hex('#1ca1e6'),
         'success' => Color::hex('#15a04f'),
         'warning' => Color::hex('#ffcc66'),

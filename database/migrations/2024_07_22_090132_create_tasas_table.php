@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tasas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->float('tasa');
             $table->timestamps();
         });

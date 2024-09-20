@@ -31,8 +31,11 @@ class TasaResource extends Resource
         Section::make('Tasa de Aseo')
           ->description('Ingrese la tasa de Aseo.')
           ->schema([
+            Forms\Components\TextInput::make('name')
+              ->label('Tasa')
+              ->required(),
             Forms\Components\TextInput::make('tasa')
-            ->prefix('B/.')
+              ->prefix('B/.')
               ->required()
           ])->columns(4)
       ]);
@@ -42,8 +45,10 @@ class TasaResource extends Resource
   {
     return $table
       ->columns([
+        Tables\Columns\TextColumn::make('name')
+          ->label('Tasa de Aseo'),
         Tables\Columns\TextColumn::make('tasa')
-        ->label('Tasa de Aseo Residencial')
+          ->label('Precio')
           ->money('B/.', locale: 'pa'),
         Tables\Columns\TextColumn::make('created_at')
           ->dateTime()
@@ -58,7 +63,12 @@ class TasaResource extends Resource
         //
       ])
       ->actions([
-        Tables\Actions\EditAction::make(),
+        Tables\Actions\ViewAction::make()
+          ->iconButton(),
+        Tables\Actions\EditAction::make()
+          ->iconButton(),
+        Tables\Actions\DeleteAction::make()
+          ->iconButton(),
       ])
       ->bulkActions([
         Tables\Actions\BulkActionGroup::make([

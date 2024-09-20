@@ -10,7 +10,44 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Employee extends Model
 {
 
-  protected $guarded = [];
+  protected $fillable = [
+    'nombre',
+    'segundo_nombre',
+    'apellido_paterno',
+    'apellido_materno',
+    'cedula',
+    'seguro_social',
+    'genero',
+    'estado_civil',
+    'fecha_nacimiento',
+    'tipo_sangre',
+    'image_url',
+    'state_id',
+    'city_id',
+    'town_id',
+    'address',
+    'employee_number',
+    'employee_type_id',
+    'status',
+    'start',
+    'end',
+    'agency_id',
+    'department_id',
+    'numero_resolucion',
+    'numero_contrato',
+    'nuemero_posicion',
+    'objeto_gastp',
+    'numero_planilla',
+    'numero_partida',
+    'salary',
+    'gastos_representacion',
+    'numero_partida_gasto_representacion',
+    'bank_id',
+    'tipo_cuenta',
+    'account_number',
+    'tipo_cuenta_beneficiario',
+    'card_type'
+  ];
 
 
   public function user()
@@ -18,7 +55,7 @@ class Employee extends Model
     return $this->hasOne(User::class);
   }
 
-  public function bank() : BelongsTo
+  public function bank(): BelongsTo
   {
     return $this->belongsTo(Bank::class);
   }

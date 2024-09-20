@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bank extends Model
 {
-    public function employee(): HasMany
-    {
-        return $this->hasMany(Employee::class);
-    }
+
+  protected $fillable = [
+    'ruta_tran',
+    'cta_corriente',
+    'cta_cta_ahorro',
+    'name',
+  ];
+
+  public function employee(): HasMany
+  {
+    return $this->hasMany(Employee::class);
+  }
 }

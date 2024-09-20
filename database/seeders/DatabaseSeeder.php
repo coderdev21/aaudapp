@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
       CustomerTypeSeeder::class,
       TasaSeeder::class,
       UrbanizationSeeder::class,
+      ConditionSeeder::class,
+
     ]);
   }
 }

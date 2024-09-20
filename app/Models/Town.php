@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Town extends Model
 {
+
+  protected $fillable = [
+    'name',
+    'state_id',
+    'city_id'
+  ];
+
   public function state(): BelongsTo
   {
     return $this->belongsTo(State::class);
@@ -37,5 +44,15 @@ class Town extends Model
   public function urbanization(): HasMany
   {
     return $this->hasMany(Urbanization::class);
+  }
+
+  public function comercialClient(): HasMany
+  {
+    return $this->hasMany(Customer::class);
+  }
+
+  public function customerOmission(): HasMany
+  {
+    return $this->hasMany(Customer::class);
   }
 }

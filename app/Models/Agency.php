@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Agency extends Model
 {
+
+  protected $fillable = [
+    'name',
+  ];
+
   public function employee(): HasMany
   {
     return $this->hasMany(Employee::class);
